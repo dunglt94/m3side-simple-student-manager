@@ -35,13 +35,10 @@ public class StudentServlet extends HttpServlet {
                 addStudent(req, resp);
                 break;
             case "edit":
-
+                updateStudent(req, resp);
                 break;
             case "delete":
-
-                break;
-            case "search":
-                searchStudent(req, resp);
+                deleteStudent(req, resp);
                 break;
             default:
         }
@@ -65,6 +62,49 @@ public class StudentServlet extends HttpServlet {
         }
     }
 
+    private void updateStudent(HttpServletRequest req, HttpServletResponse resp) {
+        int id = Integer.parseInt(req.getParameter("id"));
+        String name = req.getParameter("name");
+        int score = Integer.parseInt(req.getParameter("score"));
+        String photo = req.getParameter("photo");
+        Student student = studentService.findById(id);
+        RequestDispatcher dispatcher;
+        if (student == null) {
+            dispatcher = req.getRequestDispatcher("error-404.jsp");
+        } else {
+            student.setName(name);
+            student.setScore(score);
+            student.setPhoto(photo);
+            studentService.update(id, student);
+            req.setAttribute("student", student);
+            req.setAttribute("message", "Student information was updated");
+            dispatcher = req.getRequestDispatcher("student/edit.jsp");
+        }
+        try {
+            dispatcher.forward(req, resp);
+        } catch (ServletException | IOException e) {
+            //noinspection CallToPrintStackTrace
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteStudent(HttpServletRequest req, HttpServletResponse resp) {
+        int id = Integer.parseInt(req.getParameter("id"));
+        Student student = studentService.findById(id);
+        RequestDispatcher dispatcher;
+        if (student == null) {
+            dispatcher = req.getRequestDispatcher("error-404.jsp");
+        } else {
+            studentService.remove(id);
+            try {
+                resp.sendRedirect("/students");
+            } catch (IOException e) {
+                //noinspection CallToPrintStackTrace
+                e.printStackTrace();
+            }
+        }
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -83,10 +123,10 @@ public class StudentServlet extends HttpServlet {
                 showAddForm(req, resp);
                 break;
             case "edit":
-
+                showEditForm(req, resp);
                 break;
             case "delete":
-
+                showDeleteForm(req, resp);
                 break;
             case "view":
                 viewStudent(req, resp);
@@ -121,6 +161,42 @@ public class StudentServlet extends HttpServlet {
             dispatcher = req.getRequestDispatcher("student/view.jsp");
         }
         try{
+            dispatcher.forward(req, resp);
+        } catch (ServletException | IOException e) {
+            //noinspection CallToPrintStackTrace
+            e.printStackTrace();
+        }
+    }
+
+    private void showEditForm(HttpServletRequest req, HttpServletResponse resp) {
+        int id = Integer.parseInt(req.getParameter("id"));
+        Student student = studentService.findById(id);
+        RequestDispatcher dispatcher;
+        if (student == null) {
+            dispatcher = req.getRequestDispatcher("error-404.jsp");
+        } else {
+            req.setAttribute("student", student);
+            dispatcher = req.getRequestDispatcher("student/edit.jsp");
+        }
+        try{
+            dispatcher.forward(req, resp);
+        } catch (ServletException | IOException e) {
+            //noinspection CallToPrintStackTrace
+            e.printStackTrace();
+        }
+    }
+
+    private void showDeleteForm(HttpServletRequest req, HttpServletResponse resp) {
+        int id = Integer.parseInt(req.getParameter("id"));
+        Student student = studentService.findById(id);
+        RequestDispatcher dispatcher;
+        if (student == null) {
+            dispatcher = req.getRequestDispatcher("error-404.jsp");
+        } else {
+            req.setAttribute("student", student);
+            dispatcher = req.getRequestDispatcher("student/delete.jsp");
+        }
+        try {
             dispatcher.forward(req, resp);
         } catch (ServletException | IOException e) {
             //noinspection CallToPrintStackTrace

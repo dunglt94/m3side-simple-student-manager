@@ -56,7 +56,7 @@
         </p>
     </form>
     <p>
-        <a href="${pageContext.request.contextPath}/students?action=add">Create new customer</a>
+        <a href="${pageContext.request.contextPath}/students?action=add">Create new student</a>
     </p>
     <table>
         <tr>
@@ -73,6 +73,8 @@
                 <td class="photo">
                     <img src="${student.getPhoto()}" alt="photo">
                 </td>
+                <td><a href="students?action=edit&id=${student.getId()}">edit</a></td>
+                <td><a href="students?action=delete&id=${student.getId()}">delete</a></td>
             </tr>
         </c:forEach>
     </table>

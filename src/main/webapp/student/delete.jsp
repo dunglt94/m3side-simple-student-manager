@@ -11,6 +11,35 @@
     <title>Delete student</title>
 </head>
 <body>
-
+<h1>Delete student</h1>
+<p>
+    <td><a href="students">Back to student list</a></td>
+</p>
+<form method="post">
+    <h3>Are you sure?</h3>
+    <fieldset>
+        <legend>Student information</legend>
+        <table>
+            <tr>
+                <td>Name: </td>
+                <td>${requestScope["student"].getName()}</td>
+            </tr>
+            <tr>
+                <td>Score: </td>
+                <td>${requestScope["student"].getScore()}</td>
+            </tr>
+            <tr>
+                <td>Photo: </td>
+                <td>
+                    <img src="${requestScope["student"].getPhoto()}" style="width: 60px; height: 60px"
+                         alt="Ảnh của ${student.getName()}">
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Delete student"></td>
+            </tr>
+        </table>
+    </fieldset>
+</form>
 </body>
 </html>
