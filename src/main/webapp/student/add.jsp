@@ -24,7 +24,7 @@
     </c:if>
 </p>
 <p>
-    <a href="/students">Back to student list</a>
+    <a href="${pageContext.request.contextPath}/students">Back to student list</a>
 </p>
 <form method="post">
     <fieldset style="width: 20%">
@@ -48,5 +48,6 @@
             </tr>
         </table>
     </fieldset>
+</form>
 </body>
 </html>

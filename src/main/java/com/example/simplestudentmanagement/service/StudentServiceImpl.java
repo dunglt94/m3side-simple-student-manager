@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class StudentServiceImpl implements StudentService {
-    private static Map<Integer, Student> students;
+    private static final Map<Integer, Student> students;
 
     static {
         students = new HashMap<>();

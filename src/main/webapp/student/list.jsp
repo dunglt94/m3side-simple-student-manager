@@ -47,6 +47,14 @@
 </head>
 <body>
     <h2>Students</h2>
+    <form action="students" method="get">
+        <p>
+            <label for="search"></label>Search:
+            <input type="hidden" name="action" value="search">
+            <input type="text" name="name" id="search" placeholder="Student Name">
+            <input type="submit" value="Search">
+        </p>
+    </form>
     <p>
         <a href="${pageContext.request.contextPath}/students?action=add">Create new customer</a>
     </p>
@@ -56,7 +64,7 @@
             <th>Score</th>
             <th>Photo</th>
         </tr>
-        <c:forEach var="student" items="${requestScope['students']}">
+        <c:forEach var="student" items="${students}">
             <tr>
                 <td>
                     <a href="students?action=view&id=${student.getId()}">${student.getName()}</a>

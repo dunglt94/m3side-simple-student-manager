@@ -33,24 +33,27 @@
 </head>
 <body>
 <h3>Student detail</h3>
+<p>
+    <a href="${pageContext.request.contextPath}/students">Back to student list</a>
+</p>
 <table>
     <tr>
         <td>Photo: </td>
         <td>
-            <img src="${requestScope["student"].getPhoto()}" alt="photo" style="width: 50px; height: 50px">
+            <img src="${student.getPhoto()}" alt="photo" style="width: 50px; height: 50px">
         </td>
     </tr>
     <tr>
         <td>id: </td>
-        <td>${requestScope["student"].getId()}</td>
+        <td>${student.getId()}</td>
     </tr>
     <tr>
         <td>Name: </td>
-        <td>${requestScope["student"].getName()}</td>
+        <td>${student.getName()}</td>
     </tr>
     <tr>
         <td>Score: </td>
-        <td>${requestScope["student"].getScore()}</td>
+        <td>${student.getScore()}</td>
     </tr>
 </table>
 </body>

@@ -1,7 +1,7 @@
 package com.example.simplestudentmanagement.model;
 
 public class Student {
-    private int count = 5;
+    private static int count = 0;
     private int id;
     private String name;
     private int score;
