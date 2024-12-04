@@ -2,16 +2,40 @@ package com.example.simplestudentmanagement.service;
 
 import com.example.simplestudentmanagement.model.Student;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public interface StudentService {
-    List<Student> findAll();
 
-    void add(Student student);
+public class StudentService implements IStudentService {
 
-    Student findById(int id);
 
-    void update(int id, Student student);
+    @Override
+    public List<Student> findAll() {
+        return null;
+    }
 
-    void remove(int id);
+    @Override
+    public void add(Student student) {
+
+    }
+
+    @Override
+    public Student findById(int id) {
+        return null;
+    }
+
+    @Override
+    public void update(int id, Student student) {
+
+    }
+
+    @Override
+    public void remove(int id) {
+
+    }
+
+    @Override
+    public Student findByName(int id) {
+        return null;
+    }
 }

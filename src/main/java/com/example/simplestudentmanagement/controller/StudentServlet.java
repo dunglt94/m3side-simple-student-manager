@@ -1,8 +1,8 @@
 package com.example.simplestudentmanagement.controller;
 
 import com.example.simplestudentmanagement.model.Student;
+import com.example.simplestudentmanagement.service.IStudentService;
 import com.example.simplestudentmanagement.service.StudentService;
-import com.example.simplestudentmanagement.service.StudentServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @WebServlet(name = "StudentServlet", urlPatterns = "/students")
 public class StudentServlet extends HttpServlet {
-    StudentService studentService = new StudentServiceImpl();
+    IStudentService studentService = new StudentService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -107,7 +107,6 @@ public class StudentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         // Thiết lập encoding cho request
         req.setCharacterEncoding("UTF-8");
         // Thiết lập encoding cho response

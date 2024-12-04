@@ -13,7 +13,7 @@
 <body>
 <h1>Delete student</h1>
 <p>
-    <td><a href="students">Back to student list</a></td>
+    <a href="students">Back to student list</a>
 </p>
 <form method="post">
     <h3>Are you sure?</h3>
@@ -32,7 +32,7 @@
                 <td>Photo: </td>
                 <td>
                     <img src="${requestScope["student"].getPhoto()}" style="width: 60px; height: 60px"
-                         alt="Ảnh của ${student.getName()}">
+                         alt="Ảnh của ${requestScope["student"].getName()}">
                 </td>
             </tr>
             <tr>
