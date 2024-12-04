@@ -82,7 +82,7 @@ public class StudentDAO implements IStudentDAO {
                 int score = resultSet.getInt("score");
                 String photo = resultSet.getString("photo");
                 int classId = resultSet.getInt("class_id");
-                student = new Student(name, score, photo, classId);
+                student = new Student(id, name, score, photo, classId);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
