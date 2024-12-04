@@ -44,7 +44,7 @@
             </form>
         </div>
         <form method="get">
-            <button type="submit" class="btn btn-primary" name="action" value="add">
+            <button type="submit" class="btn btn-success" name="action" value="add">
                 Create new student
             </button>
         </form>
@@ -75,8 +75,12 @@
                             <img src="${student.getPhoto()}" alt="photo">
                         </td>
                         <td>${student.getClassId()}</td>
-                        <td><a href="students?action=edit&id=${student.getId()}">edit</a></td>
-                        <td><a href="students?action=delete&id=${student.getId()}">delete</a></td>
+                        <td>
+                            <a href="students?action=edit&id=${student.getId()}" class="btn btn-primary">Edit</a>
+                        </td>
+                        <td>
+                            <a href="students?action=delete&id=${student.getId()}" class="btn btn-danger">Delete</a>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
