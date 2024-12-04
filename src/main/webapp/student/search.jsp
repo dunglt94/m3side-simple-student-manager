@@ -73,6 +73,25 @@
                 </tbody>
             </table>
         </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <table class="table table-hover align-middle text-center">
+                <thead>
+                <tr>
+                    <th>Class Id</th>
+                    <th>Class Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <h2>Classes List</h2>
+                <c:forEach var="clazz" items="${classes}">
+                    <tr>
+                        <td>${clazz.getId()}</td>
+                        <td>${clazz.getName()}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

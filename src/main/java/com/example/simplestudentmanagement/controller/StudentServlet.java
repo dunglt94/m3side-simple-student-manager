@@ -214,6 +214,7 @@ public class StudentServlet extends HttpServlet {
     private void searchStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         List<Student> students = studentService.findAll();
+        List<Class> classes = classService.findAllClasses();
         List<Student> filteredStudents = new ArrayList<>();
         for (Student student : students) {
             if (student.getName().toLowerCase().contains(name.toLowerCase())) {
@@ -221,6 +222,7 @@ public class StudentServlet extends HttpServlet {
             }
         }
         req.setAttribute("students", filteredStudents);
+        req.setAttribute("classes", classes);
         RequestDispatcher dispatcher = req.getRequestDispatcher("student/search.jsp");
 
         try{
