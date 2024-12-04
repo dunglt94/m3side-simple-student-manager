@@ -32,11 +32,11 @@ public class StudentService implements IStudentService {
 
     @Override
     public void remove(int id) {
-
+        studentDAO.delete(id);
     }
 
     @Override
-    public Student findByName(int id) {
+    public List<Student> findByName(int id) {
         return null;
     }
 }

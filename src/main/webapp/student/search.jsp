@@ -10,43 +10,17 @@
 <html>
 <head>
     <title>Searched Students</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            box-shadow:  0 0 5px 2px rgba(89,155,214,69);
-        }
-
-        th {
-            padding: 10px;
-        }
-
-        td {
-            border-bottom: 1px solid black;
-            padding: 10px;
-            text-align: left;
-        }
-
-        .photo, .score {
-            text-align: center;
-        }
-
-        img {
-            width: 45px;
-            height: 45px;
-        }
-
-        a {
-            text-decoration: none;
-            collapse: black;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
 <h2>Searched Students</h2>
+<form action="students" method="get">
+    <p>
+        <label for="search"></label>Search:
+        <input type="hidden" name="action" value="search">
+        <input type="text" name="name" id="search" placeholder="Student Name">
+        <input type="submit" value="Search">
+    </p>
+</form>
 <p>
     <a href="${pageContext.request.contextPath}/students">Back to student list</a>
 </p>
@@ -55,16 +29,22 @@
         <th>Name</th>
         <th>Score</th>
         <th>Photo</th>
+        <th>Class ID</th>
+        <th colspan="2">Action</th>
+
     </tr>
     <c:forEach var="student" items="${students}">
         <tr>
             <td>
                 <a href="students?action=view&id=${student.getId()}">${student.getName()}</a>
             </td>
-            <td class="score">${student.getScore()}</td>
-            <td class="photo">
+            <td>${student.getScore()}</td>
+            <td>
                 <img src="${student.getPhoto()}" alt="photo">
             </td>
+            <td>${student.getClassId()}</td>
+            <td><a href="students?action=edit&id=${student.getId()}">edit</a></td>
+            <td><a href="students?action=delete&id=${student.getId()}">delete</a></td>
         </tr>
     </c:forEach>
 </table>

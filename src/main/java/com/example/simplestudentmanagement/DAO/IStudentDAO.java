@@ -15,5 +15,5 @@ public interface IStudentDAO {
 
     void delete(int id);
 
-    Student findByName(int id);
+    List<Student> findByName(int id);
 }

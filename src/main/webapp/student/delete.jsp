@@ -36,6 +36,10 @@
                 </td>
             </tr>
             <tr>
+                <td>Class Id: </td>
+                <td>${requestScope["student"].getClassId()}</td>
+            </tr>
+            <tr>
                 <td><input type="submit" value="Delete student"></td>
             </tr>
         </table>

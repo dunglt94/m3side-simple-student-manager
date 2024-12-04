@@ -140,11 +140,20 @@ public class StudentDAO implements IStudentDAO {
 
     @Override
     public void delete(int id) {
-
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareCall(DELETE_STUDENT)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            System.out.println(preparedStatement);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            //noinspection CallToPrintStackTrace
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public Student findByName(int id) {
+    public List<Student> findByName(int id) {
         return null;
     }
 }
