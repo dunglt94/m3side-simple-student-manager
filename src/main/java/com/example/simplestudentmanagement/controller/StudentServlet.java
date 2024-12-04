@@ -32,7 +32,7 @@ public class StudentServlet extends HttpServlet {
         }
         switch (action) {
             case "add":
-                addStudent(req, resp);
+                creatStudent(req, resp);
                 break;
             case "edit":
                 updateStudent(req, resp);
@@ -44,15 +44,16 @@ public class StudentServlet extends HttpServlet {
         }
     }
 
-    private void addStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void creatStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String name = req.getParameter("name");
         int score = Integer.parseInt(req.getParameter("score"));
         String photo = req.getParameter("photo");
+        int classId = Integer.parseInt(req.getParameter("classId"));
 
-        Student student = new Student(name, score, photo);
-        studentService.add(student);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("student/add.jsp");
+        Student student = new Student(name, score, photo, classId);
+        studentService.create(student);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("student/create.jsp");
         req.setAttribute("message", "New student added");
         try {
             dispatcher.forward(req, resp);
@@ -67,6 +68,7 @@ public class StudentServlet extends HttpServlet {
         String name = req.getParameter("name");
         int score = Integer.parseInt(req.getParameter("score"));
         String photo = req.getParameter("photo");
+        int classId = Integer.parseInt(req.getParameter("classId"));
         Student student = studentService.findById(id);
         RequestDispatcher dispatcher;
         if (student == null) {
@@ -75,7 +77,8 @@ public class StudentServlet extends HttpServlet {
             student.setName(name);
             student.setScore(score);
             student.setPhoto(photo);
-            studentService.update(id, student);
+            student.setClassId(classId);
+            studentService.update(student);
             req.setAttribute("student", student);
             req.setAttribute("message", "Student information was updated");
             dispatcher = req.getRequestDispatcher("student/edit.jsp");
@@ -140,7 +143,7 @@ public class StudentServlet extends HttpServlet {
     }
 
     private void showAddForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("student/add.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("student/create.jsp");
         try{
             dispatcher.forward(req, resp);
         } catch (ServletException | IOException e) {

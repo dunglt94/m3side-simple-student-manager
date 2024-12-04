@@ -7,11 +7,11 @@ import java.util.List;
 public interface IStudentService {
     List<Student> findAll();
 
-    void add(Student student);
+    void create(Student student);
 
     Student findById(int id);
 
-    void update(int id, Student student);
+    void update(Student student);
 
     void remove(int id);
 

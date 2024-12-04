@@ -1,31 +1,32 @@
 package com.example.simplestudentmanagement.service;
 
+import com.example.simplestudentmanagement.DAO.IStudentDAO;
+import com.example.simplestudentmanagement.DAO.StudentDAO;
 import com.example.simplestudentmanagement.model.Student;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class StudentService implements IStudentService {
-
+    IStudentDAO studentDAO = new StudentDAO();
 
     @Override
     public List<Student> findAll() {
-        return null;
+        return studentDAO.findAll();
     }
 
     @Override
-    public void add(Student student) {
-
+    public void create(Student student) {
+        studentDAO.creat(student);
     }
 
     @Override
     public Student findById(int id) {
-        return null;
+        return studentDAO.findById(id);
     }
 
     @Override
-    public void update(int id, Student student) {
+    public void update(Student student) {
 
     }
 

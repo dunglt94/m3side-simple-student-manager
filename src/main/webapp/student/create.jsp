@@ -28,7 +28,7 @@
 </p>
 <form method="post">
     <fieldset style="width: 20%">
-        <legend>Customer information</legend>
+        <legend>Student information</legend>
         <table>
             <tr>
                 <td><label for="name">Name: </label></td>
@@ -41,6 +41,10 @@
             <tr>
                 <td><label for="photo">Photo: </label></td>
                 <td><input type="text" name="photo" id="photo"></td>
+            </tr>
+            <tr>
+                <td><label for="class_id">Class Id: </label></td>
+                <td><input type="text" name="classId" id="class_id"></td>
             </tr>
             <tr>
                 <td></td>

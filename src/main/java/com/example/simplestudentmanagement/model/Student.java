@@ -1,34 +1,27 @@
 package com.example.simplestudentmanagement.model;
 
 public class Student {
-    private static int count = 0;
     private int id;
     private String name;
     private int score;
     private String photo;
+    private int classId;
 
     public Student() {}
 
-    public Student(String name, int score, String photo) {
-        this.id = ++count;
+    public Student(String name, int score, String photo, int classId) {
         this.name = name;
         this.score = score;
         this.photo = photo;
+        this.classId = classId;
     }
 
-    public Student(int id, String name, int score, String photo) {
+    public Student(int id, String name, int score, String photo, int classId) {
         this.id = id;
         this.name = name;
         this.score = score;
         this.photo = photo;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
+        this.classId = classId;
     }
 
     public int getId() {
@@ -61,5 +54,13 @@ public class Student {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public int getClassId() {
+        return classId;
+    }
+
+    public void setClassId(int classId) {
+        this.classId = classId;
     }
 }

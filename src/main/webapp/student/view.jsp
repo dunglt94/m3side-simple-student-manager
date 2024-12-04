@@ -10,26 +10,6 @@
 <html>
 <head>
     <title>Student detail</title>
-    <style>
-        table {
-
-            border-collapse: collapse;
-            box-shadow:  0 0 5px 2px rgba(89,155,214,69);
-        }
-
-        th {
-            padding: 10px;
-        }
-
-        td {
-            font-weight: bold;
-            border: 1px solid black;
-            padding: 10px;
-            text-align: left;
-        }
-
-
-    </style>
 </head>
 <body>
 <h3>Student detail</h3>
@@ -54,6 +34,10 @@
     <tr>
         <td>Score: </td>
         <td>${student.getScore()}</td>
+    </tr
+    ><tr>
+        <td>Class Id: </td>
+        <td>${student.getClassId()}</td>
     </tr>
 </table>
 </body>

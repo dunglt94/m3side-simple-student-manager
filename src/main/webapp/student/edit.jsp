@@ -22,7 +22,7 @@
     <a href="students">Back to student list</a>
 </p>
 <form method="post">
-    <fieldset style="width: 250px">
+    <fieldset>
         <legend>Student information</legend>
         <table>
             <tr>
@@ -36,6 +36,10 @@
             <tr>
                 <td><label for="photo">Photo: </label></td>
                 <td><input type="text" name="photo" id="photo" value="${requestScope["student"].getPhoto()}"></td>
+            </tr>
+            <tr>
+                <td><label for="class_id">Class Id: </label></td>
+                <td><input type="text" name="classId" id="class_id" value="${requestScope["student"].getClassId()}"></td>
             </tr>
             <tr>
                 <td></td>
