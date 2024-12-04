@@ -54,7 +54,7 @@
                             <td><input type="text" name="photo" id="photo"></td>
                         </tr>
                         <tr>
-                            <td><label for="class_id">Class Id: </label></td>
+                            <td><label for="class_id">Class ID: </label></td>
                             <td><input type="text" name="classId" id="class_id"></td>
                         </tr>
                         <tr>
