@@ -27,7 +27,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void update(Student student) {
-
+        studentDAO.update(student);
     }
 
     @Override

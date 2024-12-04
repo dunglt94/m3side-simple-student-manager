@@ -19,7 +19,7 @@ public class StudentDAO implements IStudentDAO {
             "(name, score, photo, class_id) VALUES (?,?,?,?)";
     private static final String SELECT_STUDENT_BY_ID = "SELECT * FROM students WHERE id = ?";
     private static final String UPDATE_STUDENT = "UPDATE students " +
-            "SET name = ?, score = ?, photo = ?,  class_id WHERE id = ?";
+            "SET name = ?, score = ?, photo = ?,  class_id = ? WHERE id = ?";
     private static final String DELETE_STUDENT = "DELETE FROM students WHERE id = ?";
     private static final String SELECT_STUDENT_BY_NAME = "SELECT * FROM students WHERE name = ?";
 
@@ -122,7 +122,20 @@ public class StudentDAO implements IStudentDAO {
 
     @Override
     public void update(Student student) {
-
+        try (Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareCall(UPDATE_STUDENT)) {
+            preparedStatement.setString(1, student.getName());
+            preparedStatement.setInt(2, student.getScore());
+            preparedStatement.setString(3, student.getPhoto());
+            preparedStatement.setInt(4, student.getClassId());
+            preparedStatement.setInt(5, student.getId());
+            preparedStatement.executeUpdate();
+            System.out.println(preparedStatement);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            //noinspection CallToPrintStackTrace
+            e.printStackTrace();
+        }
     }
 
     @Override

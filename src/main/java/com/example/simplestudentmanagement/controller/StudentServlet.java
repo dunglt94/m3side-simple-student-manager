@@ -74,6 +74,7 @@ public class StudentServlet extends HttpServlet {
         if (student == null) {
             dispatcher = req.getRequestDispatcher("error-404.jsp");
         } else {
+            student.setId(id);
             student.setName(name);
             student.setScore(score);
             student.setPhoto(photo);
