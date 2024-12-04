@@ -1,6 +1,9 @@
 package com.example.simplestudentmanagement.controller;
 
 import com.example.simplestudentmanagement.model.Student;
+import com.example.simplestudentmanagement.model.Class;
+import com.example.simplestudentmanagement.service.ClassService;
+import com.example.simplestudentmanagement.service.IClassService;
 import com.example.simplestudentmanagement.service.IStudentService;
 import com.example.simplestudentmanagement.service.StudentService;
 
@@ -17,6 +20,7 @@ import java.util.List;
 @WebServlet(name = "StudentServlet", urlPatterns = "/students")
 public class StudentServlet extends HttpServlet {
     IStudentService studentService = new StudentService();
+    IClassService classService = new ClassService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -229,7 +233,9 @@ public class StudentServlet extends HttpServlet {
 
     private void showList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Student> students = studentService.findAll();
+        List<Class> classes = classService.findAllClasses();
         req.setAttribute("students", students);
+        req.setAttribute("classes", classes);
         RequestDispatcher dispatcher = req.getRequestDispatcher("student/list.jsp");
 
         try{

@@ -139,10 +139,10 @@ public class StudentDAO implements IStudentDAO {
         return getStudents(SELECT_STUDENT_BY_NAME);
     }
 
-    private List<Student> getStudents(String selectStudentByName) {
+    private List<Student> getStudents(String query) {
         List<Student> students = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(selectStudentByName);
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
              ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
                 Student student = new Student();
