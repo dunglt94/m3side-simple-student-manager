@@ -36,7 +36,7 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public List<Student> findByName(int id) {
-        return null;
+    public List<Student> findByName(String name) {
+        return studentDAO.findByName(name);
     }
 }

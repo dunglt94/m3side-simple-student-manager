@@ -15,5 +15,5 @@ public interface IStudentService {
 
     void remove(int id);
 
-    List<Student> findByName(int id);
+    List<Student> findByName(String name);
 }

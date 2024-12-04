@@ -42,25 +42,7 @@ public class StudentDAO implements IStudentDAO {
 
     @Override
     public List<Student> findAll() {
-        List<Student> students = new ArrayList<>();
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_STUDENTS);
-            ResultSet resultSet = preparedStatement.executeQuery()) {
-            while (resultSet.next()) {
-                Student student = new Student();
-                student.setId(resultSet.getInt("id"));
-                student.setName(resultSet.getString("name"));
-                student.setScore(resultSet.getInt("score"));
-                student.setPhoto(resultSet.getString("photo"));
-                student.setClassId(resultSet.getInt("class_id"));
-                students.add(student);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            //noinspection CallToPrintStackTrace
-            e.printStackTrace();
-        }
-        return students;
+        return getStudents(SELECT_ALL_STUDENTS);
     }
 
     @Override
@@ -153,7 +135,29 @@ public class StudentDAO implements IStudentDAO {
     }
 
     @Override
-    public List<Student> findByName(int id) {
-        return null;
+    public List<Student> findByName(String name) {
+        return getStudents(SELECT_STUDENT_BY_NAME);
+    }
+
+    private List<Student> getStudents(String selectStudentByName) {
+        List<Student> students = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(selectStudentByName);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                Student student = new Student();
+                student.setId(resultSet.getInt("id"));
+                student.setName(resultSet.getString("name"));
+                student.setScore(resultSet.getInt("score"));
+                student.setPhoto(resultSet.getString("photo"));
+                student.setClassId(resultSet.getInt("class_id"));
+                students.add(student);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            //noinspection CallToPrintStackTrace
+            e.printStackTrace();
+        }
+        return students;
     }
 }
