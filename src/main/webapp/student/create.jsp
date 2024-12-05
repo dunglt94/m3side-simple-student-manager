@@ -43,19 +43,26 @@
                     <table class="table table-hover align-middle text-center">
                         <tr>
                             <td><label for="name">Name: </label></td>
-                            <td><input type="text" name="name" id="name"></td>
+                            <td><input type="text" name="name" id="name" class="form-control"></td>
                         </tr>
                         <tr>
                             <td><label for="score">Score: </label></td>
-                            <td><input type="text" name="score" id="score"></td>
+                            <td><input type="text" name="score" id="score" class="form-control"></td>
                         </tr>
                         <tr>
                             <td><label for="photo">Photo: </label></td>
-                            <td><input type="text" name="photo" id="photo"></td>
+                            <td><input type="text" name="photo" id="photo" class="form-control"></td>
                         </tr>
                         <tr>
                             <td><label for="class_id">Class ID: </label></td>
-                            <td><input type="text" name="classId" id="class_id"></td>
+                            <td>
+                                <select name="classId" id="class_id" class="form-select" aria-label="Default select example">
+                                    <option selected>Chose class</option>
+                                    <c:forEach var="clazz" items="${classes}">
+                                        <option value="${clazz.id}">${clazz.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td>

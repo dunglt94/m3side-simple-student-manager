@@ -65,8 +65,18 @@
                         <tr>
                             <td><label for="class_id">Class ID: </label></td>
                             <td>
-                                <input type="text" name="classId" id="class_id" class="form-control"
-                                       value="${requestScope["student"].getClassId()}">
+                                <select name="classId" id="class_id" class="form-select"
+                                        aria-label="Default select example">
+                                    <c:forEach var="clazz" items="${classes}">
+                                        <c:if test="${student.classId == clazz.id}">
+                                            <option selected value="${clazz.id}">${clazz.name}</option>
+                                        </c:if>
+                                        <c:if test="${student.classId != clazz.id}">
+                                            <option value="${clazz.id}">${clazz.name}</option>
+                                        </c:if>
+
+                                    </c:forEach>
+                                </select>
                             </td>
                         </tr>
                         <tr>

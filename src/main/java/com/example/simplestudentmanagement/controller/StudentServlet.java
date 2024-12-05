@@ -49,12 +49,10 @@ public class StudentServlet extends HttpServlet {
     }
 
     private void creatStudent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String name = req.getParameter("name");
         int score = Integer.parseInt(req.getParameter("score"));
         String photo = req.getParameter("photo");
         int classId = Integer.parseInt(req.getParameter("classId"));
-
         Student student = new Student(name, score, photo, classId);
         studentService.create(student);
         RequestDispatcher dispatcher = req.getRequestDispatcher("student/create.jsp");
@@ -98,19 +96,14 @@ public class StudentServlet extends HttpServlet {
 
     private void deleteStudent(HttpServletRequest req, HttpServletResponse resp) {
         int id = Integer.parseInt(req.getParameter("id"));
-        Student student = studentService.findById(id);
-        RequestDispatcher dispatcher;
-        if (student == null) {
-            dispatcher = req.getRequestDispatcher("error-404.jsp");
-        } else {
-            studentService.remove(id);
-            try {
-                resp.sendRedirect("/students");
-            } catch (IOException e) {
-                //noinspection CallToPrintStackTrace
-                e.printStackTrace();
-            }
+        studentService.remove(id);
+        try {
+            resp.sendRedirect("/students");
+        } catch (IOException e) {
+            //noinspection CallToPrintStackTrace
+            e.printStackTrace();
         }
+
     }
 
     @Override
@@ -127,7 +120,7 @@ public class StudentServlet extends HttpServlet {
         }
         switch (action) {
             case "add":
-                showAddForm(req, resp);
+                showCreateForm(req, resp);
                 break;
             case "edit":
                 showEditForm(req, resp);
@@ -147,9 +140,11 @@ public class StudentServlet extends HttpServlet {
         }
     }
 
-    private void showAddForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void showCreateForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("student/create.jsp");
+        List<Class> classes = classService.findAllClasses();
         try{
+            req.setAttribute("classes", classes);
             dispatcher.forward(req, resp);
         } catch (ServletException | IOException e) {
             //noinspection CallToPrintStackTrace
@@ -180,11 +175,13 @@ public class StudentServlet extends HttpServlet {
     private void showEditForm(HttpServletRequest req, HttpServletResponse resp) {
         int id = Integer.parseInt(req.getParameter("id"));
         Student student = studentService.findById(id);
+        List<Class> classes = classService.findAllClasses();
         RequestDispatcher dispatcher;
         if (student == null) {
             dispatcher = req.getRequestDispatcher("error-404.jsp");
         } else {
             req.setAttribute("student", student);
+            req.setAttribute("classes", classes);
             dispatcher = req.getRequestDispatcher("student/edit.jsp");
         }
         try{
@@ -198,11 +195,13 @@ public class StudentServlet extends HttpServlet {
     private void showDeleteForm(HttpServletRequest req, HttpServletResponse resp) {
         int id = Integer.parseInt(req.getParameter("id"));
         Student student = studentService.findById(id);
+        List<Class> classes = classService.findAllClasses();
         RequestDispatcher dispatcher;
         if (student == null) {
             dispatcher = req.getRequestDispatcher("error-404.jsp");
         } else {
             req.setAttribute("student", student);
+            req.setAttribute("classes", classes);
             dispatcher = req.getRequestDispatcher("student/delete.jsp");
         }
         try {
