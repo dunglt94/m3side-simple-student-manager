@@ -123,7 +123,7 @@ public class StudentDAO implements IStudentDAO {
     @Override
     public void delete(int id) {
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareCall(DELETE_STUDENT)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_STUDENT)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             System.out.println(preparedStatement);

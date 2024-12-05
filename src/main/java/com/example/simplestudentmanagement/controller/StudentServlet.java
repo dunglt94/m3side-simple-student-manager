@@ -160,11 +160,13 @@ public class StudentServlet extends HttpServlet {
     private void viewStudent (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         Student student = studentService.findById(id);
+        List<Class> classes = classService.findAllClasses();
         RequestDispatcher dispatcher;
         if (student == null) {
             dispatcher = req.getRequestDispatcher("error-404.jsp");
         } else {
             req.setAttribute("student", student);
+            req.setAttribute("classes", classes);
             dispatcher = req.getRequestDispatcher("student/view.jsp");
         }
         try{

@@ -55,7 +55,7 @@
                     <th>Name</th>
                     <th>Score</th>
                     <th>Photo</th>
-                    <th>Class ID</th>
+                    <th>Class</th>
                     <th colspan="2">Action</th>
 
                 </tr>
@@ -74,7 +74,14 @@
                         <td>
                             <img src="${student.getPhoto()}" alt="photo">
                         </td>
-                        <td>${student.getClassId()}</td>
+                        <td>
+                            <c:forEach var="clazz" items="${classes}">
+                                <c:if test="${student.classId == clazz.id}">
+                                    ${clazz.name}
+                                </c:if>
+                            </c:forEach>
+                        </td>
+<%--                        <td>${student.getClassId()}</td>--%>
                         <td>
                             <a href="students?action=edit&id=${student.getId()}" class="btn btn-primary">Edit</a>
                         </td>

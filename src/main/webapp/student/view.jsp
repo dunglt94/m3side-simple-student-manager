@@ -57,8 +57,14 @@
                 <td>${student.getScore()}</td>
             </tr
             ><tr>
-            <td>Class Id: </td>
-            <td>${student.getClassId()}</td>
+            <td>Class: </td>
+            <td>
+                <c:forEach var="clazz" items="${classes}">
+                    <c:if test="${student.classId == clazz.id}">
+                        ${clazz.name}
+                    </c:if>
+                </c:forEach>
+            </td>
         </tr>
         </table>
         <a href="${pageContext.request.contextPath}/students" class="btn btn-secondary">Back</a>
