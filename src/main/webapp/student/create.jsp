@@ -58,7 +58,9 @@
                             <td><input type="text" name="classId" id="class_id"></td>
                         </tr>
                         <tr>
-                            <td><input type="submit" value="Add Student"></td>
+                            <td>
+                                <button type="submit" class="btn btn-success">Create</button>
+                            </td>
                             <td>
                                 <c:if test='${requestScope["message"] != null}'>
                                     <span class="message" style="color: green">${requestScope["message"]}</span>

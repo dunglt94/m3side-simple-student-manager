@@ -71,7 +71,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="submit" value="Update">
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </td>
                             <td>
                                 <c:if test='${requestScope["message"] != null}'>

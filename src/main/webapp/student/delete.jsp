@@ -65,7 +65,9 @@
                         </tr>
                         <tr>
                             <td>Are you sure?</td>
-                            <td><input type="submit" value="Delete student"></td>
+                            <td>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </td>
                         </tr>
                     </table>
                 </fieldset>

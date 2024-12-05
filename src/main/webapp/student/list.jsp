@@ -48,7 +48,7 @@
                 Create new student
             </button>
         </form>
-        <div class="col-sm-12 col-md-8 col-lg-8">
+        <div class="col-sm-12 col-md-12 col-lg-8">
             <table class="table table-hover align-middle text-center">
                 <thead>
                 <tr>
@@ -93,7 +93,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="col-sm-12 col-md-12 col-lg-4">
             <table class="table table-hover align-middle text-center">
                 <thead>
                     <tr>
